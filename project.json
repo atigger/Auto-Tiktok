@@ -1,0 +1,28 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "EA85EB51-43",
+    "build_number": 43,
+    "build_time": 1593923604165,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/logo.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "uii.js",
+  "name": "自动抖音",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.zidong.dy",
+  "scripts": {},
+  "versionCode": 1070,
+  "versionName": "10.7.0"
+}
