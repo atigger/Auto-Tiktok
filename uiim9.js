@@ -9,7 +9,6 @@ if (!floaty.checkPermission()) {
     floaty.requestPermission()
 }
 var vi = device.getMusicVolume();
-var sh = new Shell(true);
 toastLog("当前音量为" + vi);
 console.log(getVerName(app.getPackageName("自动抖音")));
 console.log(getVerName1(app.getPackageName("抖音极速版")));
@@ -19,11 +18,13 @@ ui.layout(
     <vertical>
         <button id="wzh" text="点击打开无障碍服务" />
         <button id="sz" text="点击打开设置" />
-        <text text="请设置您需要自动操作的时间" />
+        <text text="请设置您需要自动操作的时间" marginTop="30" />
         <input id="time1" inputType="number" hint="单位（分钟）" line="1" text="" />
         <button id="ok" text="确定" />
-        <button id="gb" text="点击关闭脚本" />
-        <text text="重要" textColor="red" gravity="center" textSize="40sp" />
+        <button id="gbgg" text="自动关闭广告功能" marginTop="30" />
+        <text text="此功能会无限循环自动点击关闭广告按钮，方便看广告的时候无需再手动点击关闭广告，需要停止时请点击音量+键即可关闭" textColor="black" />
+        <button id="gb" text="点击关闭脚本" marginTop="30" />
+        <text text="重要" textColor="red" gravity="center" textSize="40sp" marginTop="30" />
         <text id="myText" line="4" textColor="red" gravity="center" />
         <text id="text1" textColor="black" gravity="center" textSize="20sp" />
         <text id="text2" textColor="black" gravity="center" textSize="20sp" />
@@ -159,6 +160,17 @@ ui.ok.on("click", () => {
         }
     });
 
+});
+ui.gbgg.on("click", () => {
+    toastLog("正在打开抖音极速版");
+    app.launchApp("抖音极速版");
+    var thread5 = threads.start(function () {
+        //在新线程执行的代码                   
+        while (true) {
+            className("android.widget.TextView").text("关闭广告").findOne().click()
+            toastLog("已自动关闭广告")
+        }
+    });
 });
 ui.gb.on("click", () => {
     engines.stopAll();
