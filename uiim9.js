@@ -148,9 +148,8 @@ ui.ok.on("click", () => {
     threads.start(function () {
         thread1.waitFor();
         while (1) {
-            sleep(2000)
-            console.log("3", "3")
-            console.log("4", thread1.isAlive())
+            sleep(10000)
+            console.log("线程是否存活", thread1.isAlive())
             if (!thread1.isAlive()) {
                 threads.shutDownAll();
                 toastLog("脚本即将停止运行");
