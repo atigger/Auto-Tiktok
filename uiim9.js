@@ -99,10 +99,9 @@ ui.ok.on("click", () => {
                         if (className("android.widget.TextView").text("关闭广告").exists()) {
                             className("android.widget.TextView").text("关闭广告").findOne().click()
                             sleep(1000)
-                            aaa = 0;
                             back();
                             toastLog("第一个广告观看完毕");
-                            b = 46;
+                            b = 10;
                             break;
                         }
                         sleep(5000);

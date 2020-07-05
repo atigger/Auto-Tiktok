@@ -94,16 +94,15 @@ ui.ok.on("click", () => {
                     toastLog("看广告视频按钮存在");
                     sleep(1000)
                     toastLog("正在点击看广告视频按钮");
-                    className("android.widget.TextView").text("看广告视频再赚").findOne().click()
+                    click(520.1175)
                     var b = 0;
                     while (b < 9) {
                         if (className("android.widget.TextView").text("关闭广告").exists()) {
                             className("android.widget.TextView").text("关闭广告").findOne().click()
                             sleep(1000)
-                            aaa = 0;
                             back();
                             toastLog("第一个广告观看完毕");
-                            b = 46;
+                            b = 10;
                             break;
                         }
                         sleep(5000);
@@ -117,20 +116,20 @@ ui.ok.on("click", () => {
                     if (className("android.view.View").text("去领取").exists()) {
                         toastLog("正在准备观看第二个广告");
                         className("android.view.View").text("去领取").findOne().click()
-                        var b = 0;
-                        while (b < 9) {
+                        var b1 = 0;
+                        while (b1 < 9) {
                             if (className("android.widget.TextView").text("关闭广告").exists()) {
                                 className("android.widget.TextView").text("关闭广告").findOne().click()
                                 sleep(1000)
                                 aaa = 0;
                                 back();
                                 toastLog("第二个广告观看完毕");
-                                b = 10;
+                                b1 = 10;
                                 break;
                             }
                             sleep(5000);
-                            toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                            b++;
+                            toastLog("正在等待关闭广告按钮" + b1 * 5 + "秒");
+                            b1++;
                         }
                     } else {
                         back();
