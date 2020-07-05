@@ -72,7 +72,7 @@ ui.ok.on("click", () => {
                 sleep(5000);
             }
         }
-    });
+    });/*
     var thread2 = threads.start(function () {
         //在新线程执行的代码     
         while (1) {
@@ -113,7 +113,7 @@ ui.ok.on("click", () => {
                 sleep(2000)
                 if (className("android.view.View").text("去领取").exists()) {
                     toastLog("正在准备观看第二个广告");
-                    className("android.view.View").text("去领取").findOne().click()
+                    className("android.view.View").text("去领取").depth(15).findOne().click()
                     var b = 0;
                     while (b < 9) {
                         if (className("android.widget.TextView").text("关闭广告").exists()) {
@@ -139,7 +139,7 @@ ui.ok.on("click", () => {
             sleep(1000)
         }
     });
-
+*/
 
     threads.start(function () {
         thread1.waitFor();
