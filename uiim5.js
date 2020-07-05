@@ -11,8 +11,8 @@ if (!floaty.checkPermission()) {
 var vi = device.getMusicVolume();
 var sh = new Shell(true);
 toastLog("当前音量为" + vi);
-toastLog(getVerName(app.getPackageName("自动抖音")));
-toastLog(getVerName1(app.getPackageName("抖音极速版")));
+console.log(getVerName(app.getPackageName("自动抖音")));
+console.log(getVerName1(app.getPackageName("抖音极速版")));
 var zddy = getVerName(app.getPackageName("自动抖音"))
 var dyjsb = getVerName1(app.getPackageName("抖音极速版"))
 ui.layout(
