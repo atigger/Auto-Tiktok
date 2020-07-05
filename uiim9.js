@@ -5,14 +5,14 @@ var a = 0
 var aaa = 0;
 var timenumber = 0
 if (!floaty.checkPermission()) {
-    toast("请打开悬浮窗权限")
+    toastLog("请打开悬浮窗权限")
     floaty.requestPermission()
 }
 var vi = device.getMusicVolume();
 var sh = new Shell(true);
-toast("当前音量为" + vi);
-toastLog(getVerName(app.getPackageName("自动抖音")));
-toastLog(getVerName1(app.getPackageName("抖音极速版")));
+toastLog("当前音量为" + vi);
+console.log(getVerName(app.getPackageName("自动抖音")));
+console.log(getVerName1(app.getPackageName("抖音极速版")));
 var zddy = getVerName(app.getPackageName("自动抖音"))
 var dyjsb = getVerName1(app.getPackageName("抖音极速版"))
 ui.layout(
@@ -52,7 +52,7 @@ ui.ok.on("click", () => {
     timenumber = parseInt(ui.time1.text());
     var timenumber1 = timenumber * 6;
     console.log(timenumber);
-    toast("正在打开抖音极速版");
+    toastLog("正在打开抖音极速版");
     app.launchApp("抖音极速版");
     var thread1 = threads.start(function () {
         //在新线程执行的代码                   
@@ -60,7 +60,7 @@ ui.ok.on("click", () => {
             sleep(10000)
             if (aaa == 0) {
                 swipe(500, 1500, 500, 500, 500)
-                console.log("1", "1")
+                console.log("正在执行第" + i + "次")
                 i = i + 1;
             } else {
                 sleep(5000);
@@ -71,64 +71,64 @@ ui.ok.on("click", () => {
         //在新线程执行的代码     
         while (1) {
             if (text("开宝箱").id("brq").exists()) {
-                toast("已发现开宝箱按钮，60秒后将自动点击");
+                toastLog("已发现开宝箱按钮，60秒后将自动点击");
                 var babb = 0;
                 while (babb < 60) {
                     if (babb == 30) {
-                        toast("已发现开宝箱按钮，将在30秒后将自动点击");
+                        toastLog("已发现开宝箱按钮，将在30秒后将自动点击");
                     }
                     if (babb == 50) {
-                        toast("已发现开宝箱按钮，将在10秒后将自动点击");
+                        toastLog("已发现开宝箱按钮，将在10秒后将自动点击");
                     }
                     sleep(1000);
                     babb = babb + 1;
                 }
                 aaa = 1;
-                toast("正在点击开宝箱按钮");
+                toastLog("正在点击开宝箱按钮");
                 id("brm").findOne().click();
                 text("开宝箱得金币").findOne().click();
-                toast("已点击开宝箱得金币按钮");
+                toastLog("已点击开宝箱得金币按钮");
                 sleep(3000);
                 if (text("看广告视频再赚").exists()) {
-                    toast("看广告视频按钮存在");
+                    toastLog("看广告视频按钮存在");
                     sleep(1000)
-                    toast("正在点击看广告视频按钮");
+                    toastLog("正在点击看广告视频按钮");
                     className("android.widget.TextView").text("看广告视频再赚").findOne().parent().click()
                     var b = 0;
-                    while (b < 45) {
+                    while (b < 9) {
                         if (className("android.widget.TextView").text("关闭广告").exists()) {
                             className("android.widget.TextView").text("关闭广告").findOne().click()
                             sleep(1000)
                             aaa = 0;
                             back();
-                            toast("第一个广告观看完毕");
+                            toastLog("第一个广告观看完毕");
                             b = 46;
                             break;
                         }
-                        sleep(1000);
-                        toast("正在等待关闭广告按钮" + b + "秒");
+                        sleep(5000);
+                        toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
                         b++;
                     }
-                    toast("关闭广告");
+                    toastLog("关闭广告");
                     sleep(2000)
                     id("brm").findOne().click();
                     sleep(2000)
                     if (className("android.view.View").text("去领取").exists()) {
-                        toast("正在准备观看第二个广告");
+                        toastLog("正在准备观看第二个广告");
                         className("android.view.View").text("去领取").findOne().click()
                         var b = 0;
-                        while (b < 45) {
+                        while (b < 9) {
                             if (className("android.widget.TextView").text("关闭广告").exists()) {
                                 className("android.widget.TextView").text("关闭广告").findOne().click()
                                 sleep(1000)
                                 aaa = 0;
                                 back();
-                                toast("第二个广告观看完毕");
-                                b = 46;
+                                toastLog("第二个广告观看完毕");
+                                b = 10;
                                 break;
                             }
-                            sleep(1000);
-                            toast("正在等待关闭广告按钮" + b + "秒");
+                            sleep(5000);
+                            toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
                             b++;
                         }
                     } else {
@@ -149,10 +149,11 @@ ui.ok.on("click", () => {
         thread1.waitFor();
         while (1) {
             sleep(2000)
-            console.log("线程是否存活", thread1.isAlive())
+            console.log("3", "3")
+            console.log("4", thread1.isAlive())
             if (!thread1.isAlive()) {
                 threads.shutDownAll();
-                toast("脚本即将停止运行");
+                toastLog("脚本即将停止运行");
                 device.vibrate(2000);
                 home();
                 engines.stopAll();
