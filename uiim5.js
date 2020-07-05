@@ -1,16 +1,15 @@
 "ui";
 importClass(android.view.View);
-setScreenMetrics(1080, 2340);
+//setScreenMetrics(1080, 2340);
 var a = 0
 var aaa = 0;
 var timenumber = 0
 if (!floaty.checkPermission()) {
-    toastLog("请打开悬浮窗权限")
+    toast("请打开悬浮窗权限")
     floaty.requestPermission()
 }
 var vi = device.getMusicVolume();
-var sh = new Shell(true);
-toastLog("当前音量为" + vi);
+toast("当前音量为" + vi);
 console.log(getVerName(app.getPackageName("自动抖音")));
 console.log(getVerName1(app.getPackageName("抖音极速版")));
 var zddy = getVerName(app.getPackageName("自动抖音"))
@@ -19,11 +18,13 @@ ui.layout(
     <vertical>
         <button id="wzh" text="点击打开无障碍服务" />
         <button id="sz" text="点击打开设置" />
-        <text text="请设置您需要自动操作的时间" />
+        <text text="请设置您需要自动操作的时间" marginTop="30" />
         <input id="time1" inputType="number" hint="单位（分钟）" line="1" text="" />
         <button id="ok" text="确定" />
-        <button id="gb" text="点击关闭脚本" />
-        <text text="重要" textColor="red" gravity="center" textSize="40sp" />
+        <button id="gbgg" text="自动关闭广告功能" marginTop="30" />
+        <text text="此功能会无限循环自动点击关闭广告按钮，方便看广告的时候无需再手动点击关闭广告，需要停止时请点击音量+键即可关闭" textColor="black" />
+        <button id="gb" text="点击关闭脚本" marginTop="30" />
+        <text text="重要" textColor="red" gravity="center" textSize="40sp" marginTop="30" />
         <text id="myText" line="4" textColor="red" gravity="center" />
         <text id="text1" textColor="black" gravity="center" textSize="20sp" />
         <text id="text2" textColor="black" gravity="center" textSize="20sp" />
@@ -44,6 +45,11 @@ function getVerName1(package_name) {
 ui.text1.setText("当前APP版本：" + zddy);
 ui.text2.setText("当前抖音版本：" + dyjsb);
 ui.myText.setText("打开后请先点击无障碍，如果点击无反应则为开启成功\n如果APP出现无障碍打开后依然提示无障碍服务未开启\n请点击第二个按钮清除应用数据\n按音量上键可以停止脚本\n请保证APP版本与抖音版本一致");
+ui.sz.on("click", () => {
+    var pack = getPackageName("自动抖音");
+    console.log("11", pack)
+    app.openAppSetting(pack);
+});
 ui.wzh.on("click", () => {
     auto();
 });
@@ -51,18 +57,17 @@ var i = 0;
 ui.ok.on("click", () => {
     timenumber = parseInt(ui.time1.text());
     var timenumber1 = timenumber * 6;
-    console.log(timenumber);
-    toastLog("正在打开抖音极速版");
-    console.log("正在打开抖音极速版");
+    console.log("将要进行的时间:", timenumber);
+    toast("正在打开抖音极速版");
     app.launchApp("抖音极速版");
     var thread1 = threads.start(function () {
         //在新线程执行的代码                   
         while (i < timenumber1) {
             sleep(10000)
             if (aaa == 0) {
-                swipe(500, 1500, 500, 500, 500)
-                console.log("正在执行第" + i + "次")
+                swipe(437, 1170, 513, 95, 700)
                 i = i + 1;
+                console.log("正在进行的次数", i)
             } else {
                 sleep(5000);
             }
@@ -90,18 +95,33 @@ ui.ok.on("click", () => {
                 text("开宝箱得金币").findOne().click();
                 toastLog("已点击开宝箱得金币按钮");
                 sleep(3000);
-                if (text("看广告视频再赚").exists()) {
-                    toastLog("看广告视频按钮存在");
-                    sleep(1000)
-                    toastLog("正在点击看广告视频按钮");
-                    click(520.1175)
+                toastLog("正在点击看广告视频按钮");
+                click(545, 1111)
+                var b = 0;
+                while (b < 9) {
+                    if (className("android.widget.TextView").text("关闭广告").exists()) {
+                        className("android.widget.TextView").text("关闭广告").findOne().click()
+                        sleep(1000)
+                        toastLog("第一个广告观看完毕");
+                        b = 10;
+                        break;
+                    }
+                    sleep(5000);
+                    toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                    b++;
+                }
+                sleep(2000)
+                if (className("android.view.View").text("去领取").exists()) {
+                    toastLog("正在准备观看第二个广告");
+                    className("android.view.View").text("去领取").findOne().click()
                     var b = 0;
                     while (b < 9) {
                         if (className("android.widget.TextView").text("关闭广告").exists()) {
                             className("android.widget.TextView").text("关闭广告").findOne().click()
                             sleep(1000)
+                            aaa = 0;
                             back();
-                            toastLog("第一个广告观看完毕");
+                            toastLog("第二个广告观看完毕");
                             b = 10;
                             break;
                         }
@@ -109,34 +129,8 @@ ui.ok.on("click", () => {
                         toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
                         b++;
                     }
-                    toastLog("关闭广告");
-                    sleep(2000)
-                    id("brm").findOne().click();
-                    sleep(2000)
-                    if (className("android.view.View").text("去领取").exists()) {
-                        toastLog("正在准备观看第二个广告");
-                        className("android.view.View").text("去领取").findOne().click()
-                        var b1 = 0;
-                        while (b1 < 9) {
-                            if (className("android.widget.TextView").text("关闭广告").exists()) {
-                                className("android.widget.TextView").text("关闭广告").findOne().click()
-                                sleep(1000)
-                                aaa = 0;
-                                back();
-                                toastLog("第二个广告观看完毕");
-                                b1 = 10;
-                                break;
-                            }
-                            sleep(5000);
-                            toastLog("正在等待关闭广告按钮" + b1 * 5 + "秒");
-                            b1++;
-                        }
-                    } else {
-                        back();
-                    }
                 } else {
                     back();
-                    aaa = 0;
                 }
                 back();
                 aaa = 0;
@@ -148,11 +142,11 @@ ui.ok.on("click", () => {
     threads.start(function () {
         thread1.waitFor();
         while (1) {
-            sleep(10000)
-            console.log("线程是否存活", thread1.isAlive())
+            sleep(2000)
+            console.log("线程是否存活：", thread1.isAlive())
             if (!thread1.isAlive()) {
                 threads.shutDownAll();
-                toastLog("脚本即将停止运行");
+                toast("脚本即将停止运行");
                 device.vibrate(2000);
                 home();
                 engines.stopAll();
@@ -163,4 +157,15 @@ ui.ok.on("click", () => {
 });
 ui.gb.on("click", () => {
     engines.stopAll();
+});
+ui.gbgg.on("click", () => {
+    toastLog("正在打开抖音极速版");
+    app.launchApp("抖音极速版");
+    var thread5 = threads.start(function () {
+        //在新线程执行的代码                   
+        while (true) {
+            className("android.widget.TextView").text("关闭广告").findOne().click()
+            toastLog("已自动关闭广告")
+        }
+    });
 });
