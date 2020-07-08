@@ -53,17 +53,16 @@ ui.sz.on("click", () => {
 ui.wzh.on("click", () => {
     auto();
 });
-var i = 0;
 ui.ok.on("click", () => {
     console.show();
     timenumber = parseInt(ui.time1.text());
-    var timenumber1 = timenumber * 6;
+    var timenumber1 = timenumber * 12;
     console.log("将要进行的时间:", timenumber);
     toast("正在打开抖音极速版");
     app.launchApp("抖音极速版");
     var thread1 = threads.start(function () {
         //在新线程执行的代码                   
-        while (i < timenumber1) {
+        while (true) {
             var hd = random(10000, 15000)
             console.log("滑动时间：" + hd)
             sleep(hd)
@@ -71,8 +70,6 @@ ui.ok.on("click", () => {
                 var hd1 = random(700, 1000)
                 console.log("滑动时间1：" + hd1)
                 swipe(437, 1170, 513, 95, hd1)
-                i = i + 1;
-                console.log("正在进行的次数", i)
                 var dz = random(0, 100)
                 console.log("点赞：" + dz)
                 if (dz > 50) {
@@ -86,11 +83,11 @@ ui.ok.on("click", () => {
                     var sj2 = sj1 - 1;
                     console.log("随机数1:" + sj1)
                     console.log("随机数2:" + sj2)
-                    for (var i = 0; i < sj1; i++) {
+                    for (var i1 = 0; i1 < sj1; i1++) {
                         swipe(553, 1568, 500, 737, 700)
                         sleep(1000)
                     }
-                    for (var i = 0; i < sj2; i++) {
+                    for (var i2 = 0; i2 < sj2; i2++) {
                         swipe(500, 737, 553, 1568, 700)
                         sleep(1000)
                     }
@@ -140,33 +137,45 @@ ui.ok.on("click", () => {
                     b++;
                 }
                 sleep(2000)
-/*                 if (className("android.view.View").text("去领取").exists()) {
-                    toastLog("正在准备观看第二个广告");
-                    className("android.view.View").text("去领取").findOne().click()
-                    var b = 0;
-                    while (b < 9) {
-                        if (className("android.widget.TextView").text("关闭广告").exists()) {
-                            className("android.widget.TextView").text("关闭广告").findOne().click()
-                            sleep(1000)
-                            aaa = 0;
-                            back();
-                            toastLog("第二个广告观看完毕");
-                            b = 10;
-                            break;
-                        }
-                        sleep(5000);
-                        toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                        b++;
-                    }
-                } else {
-                    back();
-                } */
+                /*                 if (className("android.view.View").text("去领取").exists()) {
+                                    toastLog("正在准备观看第二个广告");
+                                    className("android.view.View").text("去领取").findOne().click()
+                                    var b = 0;
+                                    while (b < 9) {
+                                        if (className("android.widget.TextView").text("关闭广告").exists()) {
+                                            className("android.widget.TextView").text("关闭广告").findOne().click()
+                                            sleep(1000)
+                                            aaa = 0;
+                                            back();
+                                            toastLog("第二个广告观看完毕");
+                                            b = 10;
+                                            break;
+                                        }
+                                        sleep(5000);
+                                        toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                                        b++;
+                                    }
+                                } else {
+                                    back();
+                                } */
                 back();
                 aaa = 0;
             }
             aaa = 0;
             sleep(1000)
         }
+    });
+    var thread3 = threads.start(function () {
+        var time111 = 0;
+        while (time111 < timenumber1) {
+            sleep(5000)
+            time111++;
+        }
+        toastLog("脚本即将停止运行");
+        floaty.closeAll();
+        device.vibrate(2000);
+        home();
+        engines.stopAll();
     });
     threads.start(function () {
         thread1.waitFor();
@@ -183,6 +192,7 @@ ui.ok.on("click", () => {
             }
         }
     });
+
 
 });
 ui.gb.on("click", () => {
