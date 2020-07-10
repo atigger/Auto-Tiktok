@@ -82,7 +82,10 @@ ui.ok.on("click", () => {
                 }
                 var pl = random(0, 100)
                 if (pl > 90) {
+<<<<<<< HEAD
                     aaa1 = 1;
+=======
+>>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
                     id("wm").className("android.widget.ImageView").descStartsWith("评论").findOne().parent().click()
                     sleep(2000)
                     var sj1 = random(1, 5);
@@ -97,9 +100,14 @@ ui.ok.on("click", () => {
                         swipe(500, 737, 553, 1568, 700)
                         sleep(1000)
                     }
+<<<<<<< HEAD
                     back();
                     sleep(1000)
                     aaa1 = 0;
+=======
+                    click(553, 180)
+                    sleep(1000)
+>>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
                 }
             } else {
                 sleep(5000);
@@ -179,7 +187,11 @@ ui.ok.on("click", () => {
             sleep(1000)
         }
     });
+<<<<<<< HEAD
     var thread3 = threads.start(function() {
+=======
+    var thread3 = threads.start(function () {
+>>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
         var time111 = 0;
         while (time111 < timenumber1) {
             sleep(5000)
@@ -191,7 +203,11 @@ ui.ok.on("click", () => {
         home();
         engines.stopAll();
     });
+<<<<<<< HEAD
     threads.start(function() {
+=======
+    threads.start(function () {
+>>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
         thread1.waitFor();
         while (1) {
             sleep(10000)
