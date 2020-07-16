@@ -59,16 +59,15 @@ ui.ok.on("click", () => {
     var thread1 = threads.start(function () {
         //在新线程执行的代码                   
         while (true) {
+            var hd = random(10000, 15000)
+            console.log("滑动间隔：" + hd)
             sleep(10000)
             if (aaa == 0) {
                 i = i + 1;
                 console.log("正在执行第" + i + "次")
-                var height = random(1300, 1500)
-                var time_line = random(500, 1000)
-                var hight_h = random(800, 1000)
-                var a = height - hight_h;
-                console.log("滑动距离:" + a + "滑动时间:" + time_line);
-                swipe(500, height, 500, height - hight_h, time_line)
+                var time_line = random(700, 1000)
+                console.log("滑动时间:" + time_line);
+                swipe(500, 1800, 500, 600, time_line)
             } else {
                 sleep(5000);
             }
