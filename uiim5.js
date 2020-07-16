@@ -76,11 +76,11 @@ ui.ok.on("click", () => {
                 console.log("滑动时间1：" + hd1)
                 swipe(437, 1170, 513, 95, hd1)
                 var dz = random(0, 100)
-                console.log("点赞：" + dz)
+   /*             console.log("点赞：" + dz)
                 if (dz > 50) {
                     id("a55").className("android.widget.ImageView").descStartsWith("未选中").findOne().parent().click();
                 }
-/*                 var pl = random(0, 100)
+                 var pl = random(0, 100)
                 if (pl > 90) {
                     aaa1 = 1;
                     id("wm").className("android.widget.ImageView").descStartsWith("评论").findOne().parent().click()
@@ -106,10 +106,10 @@ ui.ok.on("click", () => {
             }
         }
     });
-    var thread2 = threads.start(function () {
+   /*    var thread2 = threads.start(function () {
         //在新线程执行的代码     
         while (1) {
-            if (text("开宝箱").id("brq").exists()) {
+            if (text("开宝箱").exists()) {
                 toastLog("已发现开宝箱按钮，60秒后将自动点击");
                 var babb = 0;
                 while (babb < 60) {
@@ -131,7 +131,7 @@ ui.ok.on("click", () => {
                 }
                 aaa = 1;
                 toastLog("正在点击开宝箱按钮");
-                id("brm").findOne().click();
+                id("bs8").findOne().click();
                 text("开宝箱得金币").findOne().click();
                 toastLog("已点击开宝箱得金币按钮");
                 sleep(3000);
@@ -151,7 +151,7 @@ ui.ok.on("click", () => {
                     b++;
                 }
                 sleep(2000)
-                /*                 if (className("android.view.View").text("去领取").exists()) {
+                              if (className("android.view.View").text("去领取").exists()) {
                                     toastLog("正在准备观看第二个广告");
                                     className("android.view.View").text("去领取").findOne().click()
                                     var b = 0;
@@ -171,14 +171,14 @@ ui.ok.on("click", () => {
                                     }
                                 } else {
                                     back();
-                                } */
+                                } 
                 back();
                 aaa = 0;
             }
             aaa = 0;
             sleep(1000)
         }
-    });
+    });*/
     var thread3 = threads.start(function () {
         var time111 = 0;
         while (time111 < timenumber1) {
