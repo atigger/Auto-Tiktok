@@ -76,109 +76,109 @@ ui.ok.on("click", () => {
                 console.log("滑动时间1：" + hd1)
                 swipe(437, 1170, 513, 95, hd1)
                 var dz = random(0, 100)
-   /*             console.log("点赞：" + dz)
-                if (dz > 50) {
-                    id("a55").className("android.widget.ImageView").descStartsWith("未选中").findOne().parent().click();
-                }
-                 var pl = random(0, 100)
-                if (pl > 90) {
-                    aaa1 = 1;
-                    id("wm").className("android.widget.ImageView").descStartsWith("评论").findOne().parent().click()
-                    sleep(2000)
-                    var sj1 = random(1, 5);
-                    var sj2 = sj1 - 1;
-                    console.log("随机数1:" + sj1)
-                    console.log("随机数2:" + sj2)
-                    for (var i1 = 0; i1 < sj1; i1++) {
-                        swipe(553, 1568, 500, 737, 700)
-                        sleep(1000)
-                    }
-                    for (var i2 = 0; i2 < sj2; i2++) {
-                        swipe(500, 737, 553, 1568, 700)
-                        sleep(1000)
-                    }
-                    back();
-                    sleep(1000)
-                    aaa1 = 0;
-                } */
+                /*             console.log("点赞：" + dz)
+                             if (dz > 50) {
+                                 id("a55").className("android.widget.ImageView").descStartsWith("未选中").findOne().parent().click();
+                             }
+                              var pl = random(0, 100)
+                             if (pl > 90) {
+                                 aaa1 = 1;
+                                 id("wm").className("android.widget.ImageView").descStartsWith("评论").findOne().parent().click()
+                                 sleep(2000)
+                                 var sj1 = random(1, 5);
+                                 var sj2 = sj1 - 1;
+                                 console.log("随机数1:" + sj1)
+                                 console.log("随机数2:" + sj2)
+                                 for (var i1 = 0; i1 < sj1; i1++) {
+                                     swipe(553, 1568, 500, 737, 700)
+                                     sleep(1000)
+                                 }
+                                 for (var i2 = 0; i2 < sj2; i2++) {
+                                     swipe(500, 737, 553, 1568, 700)
+                                     sleep(1000)
+                                 }
+                                 back();
+                                 sleep(1000)
+                                 aaa1 = 0;
+                             } */
             } else {
                 sleep(5000);
             }
         }
     });
-   /*    var thread2 = threads.start(function () {
-        //在新线程执行的代码     
-        while (1) {
-            if (text("开宝箱").exists()) {
-                toastLog("已发现开宝箱按钮，60秒后将自动点击");
-                var babb = 0;
-                while (babb < 60) {
-                    if (babb == 30) {
-                        toastLog("已发现开宝箱按钮，将在30秒后将自动点击");
-                    }
-                    if (babb == 50) {
-                        toastLog("已发现开宝箱按钮，将在10秒后将自动点击");
-                    }
-                    sleep(1000);
-                    babb = babb + 1;
-                    while (true) {
-                        if (aaa1 == 0) {
-                            break;
-                        }
-                        console.log("正在等待评论列表关闭")
-                        sleep(1000)
-                    }
-                }
-                aaa = 1;
-                toastLog("正在点击开宝箱按钮");
-                id("bs8").findOne().click();
-                text("开宝箱得金币").findOne().click();
-                toastLog("已点击开宝箱得金币按钮");
-                sleep(3000);
-                toastLog("正在点击看广告视频按钮");
-                click(545, 1111)
-                var b = 0;
-                while (b < 9) {
-                    if (className("android.widget.TextView").text("关闭广告").exists()) {
-                        className("android.widget.TextView").text("关闭广告").findOne().click()
-                        sleep(1000)
-                        toastLog("第一个广告观看完毕");
-                        b = 10;
-                        break;
-                    }
-                    sleep(5000);
-                    toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                    b++;
-                }
-                sleep(2000)
-                              if (className("android.view.View").text("去领取").exists()) {
-                                    toastLog("正在准备观看第二个广告");
-                                    className("android.view.View").text("去领取").findOne().click()
-                                    var b = 0;
-                                    while (b < 9) {
-                                        if (className("android.widget.TextView").text("关闭广告").exists()) {
-                                            className("android.widget.TextView").text("关闭广告").findOne().click()
-                                            sleep(1000)
-                                            aaa = 0;
-                                            back();
-                                            toastLog("第二个广告观看完毕");
-                                            b = 10;
-                                            break;
-                                        }
-                                        sleep(5000);
-                                        toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                                        b++;
-                                    }
-                                } else {
-                                    back();
-                                } 
-                back();
-                aaa = 0;
-            }
-            aaa = 0;
-            sleep(1000)
-        }
-    });*/
+    /*    var thread2 = threads.start(function () {
+         //在新线程执行的代码     
+         while (1) {
+             if (text("开宝箱").exists()) {
+                 toastLog("已发现开宝箱按钮，60秒后将自动点击");
+                 var babb = 0;
+                 while (babb < 60) {
+                     if (babb == 30) {
+                         toastLog("已发现开宝箱按钮，将在30秒后将自动点击");
+                     }
+                     if (babb == 50) {
+                         toastLog("已发现开宝箱按钮，将在10秒后将自动点击");
+                     }
+                     sleep(1000);
+                     babb = babb + 1;
+                     while (true) {
+                         if (aaa1 == 0) {
+                             break;
+                         }
+                         console.log("正在等待评论列表关闭")
+                         sleep(1000)
+                     }
+                 }
+                 aaa = 1;
+                 toastLog("正在点击开宝箱按钮");
+                 id("bs8").findOne().click();
+                 text("开宝箱得金币").findOne().click();
+                 toastLog("已点击开宝箱得金币按钮");
+                 sleep(3000);
+                 toastLog("正在点击看广告视频按钮");
+                 click(545, 1111)
+                 var b = 0;
+                 while (b < 9) {
+                     if (className("android.widget.TextView").text("关闭广告").exists()) {
+                         className("android.widget.TextView").text("关闭广告").findOne().click()
+                         sleep(1000)
+                         toastLog("第一个广告观看完毕");
+                         b = 10;
+                         break;
+                     }
+                     sleep(5000);
+                     toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                     b++;
+                 }
+                 sleep(2000)
+                               if (className("android.view.View").text("去领取").exists()) {
+                                     toastLog("正在准备观看第二个广告");
+                                     className("android.view.View").text("去领取").findOne().click()
+                                     var b = 0;
+                                     while (b < 9) {
+                                         if (className("android.widget.TextView").text("关闭广告").exists()) {
+                                             className("android.widget.TextView").text("关闭广告").findOne().click()
+                                             sleep(1000)
+                                             aaa = 0;
+                                             back();
+                                             toastLog("第二个广告观看完毕");
+                                             b = 10;
+                                             break;
+                                         }
+                                         sleep(5000);
+                                         toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                                         b++;
+                                     }
+                                 } else {
+                                     back();
+                                 } 
+                 back();
+                 aaa = 0;
+             }
+             aaa = 0;
+             sleep(1000)
+         }
+     });*/
     var thread3 = threads.start(function () {
         var time111 = 0;
         while (time111 < timenumber1) {
