@@ -65,7 +65,7 @@ ui.ok.on("click", () => {
     console.log("将要进行的时间:", timenumber);
     toast("正在打开抖音极速版");
     app.launchApp("抖音极速版");
-    var thread1 = threads.start(function() {
+    var thread1 = threads.start(function () {
         //在新线程执行的代码                   
         while (true) {
             var hd = random(10000, 15000)
@@ -80,12 +80,9 @@ ui.ok.on("click", () => {
                 if (dz > 50) {
                     id("a55").className("android.widget.ImageView").descStartsWith("未选中").findOne().parent().click();
                 }
-                var pl = random(0, 100)
+/*                 var pl = random(0, 100)
                 if (pl > 90) {
-<<<<<<< HEAD
                     aaa1 = 1;
-=======
->>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
                     id("wm").className("android.widget.ImageView").descStartsWith("评论").findOne().parent().click()
                     sleep(2000)
                     var sj1 = random(1, 5);
@@ -100,21 +97,16 @@ ui.ok.on("click", () => {
                         swipe(500, 737, 553, 1568, 700)
                         sleep(1000)
                     }
-<<<<<<< HEAD
                     back();
                     sleep(1000)
                     aaa1 = 0;
-=======
-                    click(553, 180)
-                    sleep(1000)
->>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
-                }
+                } */
             } else {
                 sleep(5000);
             }
         }
     });
-    var thread2 = threads.start(function() {
+    var thread2 = threads.start(function () {
         //在新线程执行的代码     
         while (1) {
             if (text("开宝箱").id("brq").exists()) {
@@ -187,11 +179,7 @@ ui.ok.on("click", () => {
             sleep(1000)
         }
     });
-<<<<<<< HEAD
-    var thread3 = threads.start(function() {
-=======
     var thread3 = threads.start(function () {
->>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
         var time111 = 0;
         while (time111 < timenumber1) {
             sleep(5000)
@@ -203,11 +191,7 @@ ui.ok.on("click", () => {
         home();
         engines.stopAll();
     });
-<<<<<<< HEAD
-    threads.start(function() {
-=======
     threads.start(function () {
->>>>>>> c89df0e806436cf873e31e7c862f6392bb1707cd
         thread1.waitFor();
         while (1) {
             sleep(10000)
@@ -232,7 +216,7 @@ ui.gb.on("click", () => {
 ui.gbgg.on("click", () => {
     toastLog("正在打开抖音极速版");
     app.launchApp("抖音极速版");
-    var thread5 = threads.start(function() {
+    var thread5 = threads.start(function () {
         //在新线程执行的代码                   
         while (true) {
             className("android.widget.TextView").text("关闭广告").findOne().click()
