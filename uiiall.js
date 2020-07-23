@@ -1,7 +1,5 @@
 "ui";
 importClass(android.view.View);
-setScreenMetrics(1080, 2340);
-var a = 0
 var aaa = 0;
 var timenumber = 0
 if (!floaty.checkPermission()) {
@@ -14,12 +12,14 @@ console.log(getVerName(app.getPackageName("自动抖音")));
 console.log(getVerName1(app.getPackageName("抖音极速版")));
 var zddy = getVerName(app.getPackageName("自动抖音"))
 var dyjsb = getVerName1(app.getPackageName("抖音极速版"))
+var auto_box_checked = false;
 ui.layout(
     <vertical>
         <button id="wzh" text="点击打开无障碍服务" />
         <button id="sz" text="点击打开设置" />
         <text text="请设置您需要自动操作的时间" marginTop="30" />
         <input id="time1" inputType="number" hint="单位（分钟）" line="1" text="" />
+        <checkbox id="auto_box" text="自动领取宝箱" />
         <button id="ok" text="确定" />
         <button id="gbgg" text="自动关闭广告功能" marginTop="30" />
         <text text="此功能会无限循环自动点击关闭广告按钮，方便看广告的时候无需再手动点击关闭广告，需要停止时请点击音量+键即可关闭" textColor="black" />
@@ -59,6 +59,7 @@ ui.ok.on("click", () => {
     var thread1 = threads.start(function () {
         //在新线程执行的代码                   
         while (true) {
+            setScreenMetrics(1080, 2340);
             var hd = random(10000, 15000)
             console.log("滑动间隔：" + hd)
             sleep(10000)
@@ -75,86 +76,93 @@ ui.ok.on("click", () => {
     });
     var thread2 = threads.start(function () {
         //在新线程执行的代码     
-        while (1) {
-            if (text("开宝箱").exists()) {
-                toastLog("已发现开宝箱按钮，60秒后将自动点击");
-                var babb = 0;
-                while (babb < 60) {
-                    if (babb == 30) {
-                        toastLog("已发现开宝箱按钮，将在30秒后将自动点击");
-                    }
-                    if (babb == 50) {
-                        toastLog("已发现开宝箱按钮，将在10秒后将自动点击");
-                    }
-                    sleep(1000);
-                    babb = babb + 1;
-                }
-                aaa = 1;
-                toastLog("正在点击开宝箱按钮");
-                var bx = className("android.widget.TextView").textStartsWith("金币").findOne()
-                click(bx.bounds().centerX(), bx.bounds().centerY())
-                text("开宝箱得金币").findOne().click();
-                toastLog("已点击开宝箱得金币按钮");
-                sleep(3000);
-                if (text("看广告视频再赚").exists()) {
-                    toastLog("看广告视频按钮存在");
-                    sleep(1000)
-                    toastLog("正在点击看广告视频按钮");
-                    var gg1 = className("android.widget.TextView").text("看广告视频再赚").findOne()
-                    click(gg1.bounds().centerX(), gg1.bounds().centerY())
-                    var b = 0;
-                    while (b < 9) {
-                        if (className("android.widget.TextView").text("关闭广告").exists()) {
-                            className("android.widget.TextView").text("关闭广告").findOne().click()
-                            sleep(1000)
-                            back();
-                            toastLog("第一个广告观看完毕");
-                            b = 10;
-                            break;
+        if (auto_box_checked) {
+            log("将会自动领取宝箱")
+            while (true) {
+                if (text("开宝箱").exists()) {
+                    toastLog("已发现开宝箱按钮，60秒后将自动点击");
+                    var babb = 0;
+                    while (babb < 60) {
+                        if (babb == 30) {
+                            toastLog("已发现开宝箱按钮，将在30秒后将自动点击");
                         }
-                        sleep(5000);
-                        toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                        b++;
+                        if (babb == 50) {
+                            toastLog("已发现开宝箱按钮，将在10秒后将自动点击");
+                        }
+                        sleep(1000);
+                        babb = babb + 1;
                     }
-                    toastLog("关闭广告");
-                    sleep(2000)
-                    var bx = className("android.widget.TextView").textStartsWith("金币").findOne()
-                    click(bx.bounds().centerX(), bx.bounds().centerY())
-                    sleep(2000)
-                    if (className("android.view.View").text("已领取").exists()) {
-                        sleep(2000)
-                        back();
-                    } else {
-                        if (className("android.view.View").text("去领取").exists()) {
-                            toastLog("正在准备观看第二个广告");
-                            className("android.view.View").text("去领取").findOne().click()
-                            var b = 0;
-                            while (b < 9) {
-                                if (className("android.widget.TextView").text("关闭广告").exists()) {
-                                    className("android.widget.TextView").text("关闭广告").findOne().click()
-                                    sleep(1000)
-                                    aaa = 0;
-                                    back();
-                                    toastLog("第二个广告观看完毕");
-                                    b = 10;
-                                    break;
-                                }
-                                sleep(5000);
-                                toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                                b++;
+                    aaa = 1;
+                    toastLog("正在点击开宝箱按钮");
+
+                    var bx1 = bx()
+                    click(bx1.bounds().centerX(), bx1.bounds().centerY())
+
+                    var kbxdjb = text("开宝箱得金币").findOne();
+                    click(kbxdjb.bounds().centerX(), kbxdjb.bounds().centerY())
+                    toastLog("已点击开宝箱得金币按钮");
+                    sleep(3000);
+
+
+                    if (text("看广告视频再赚").exists()) {
+                        toastLog("看广告视频按钮存在");
+                        sleep(1000)
+                        toastLog("正在点击看广告视频按钮");
+                        var gg1 = className("android.widget.TextView").text("看广告视频再赚").findOne()
+                        click(gg1.bounds().centerX(), gg1.bounds().centerY())
+                        var b = 0;
+                        while (b < 9) {
+                            if (className("android.widget.TextView").text("关闭广告").exists()) {
+                                className("android.widget.TextView").text("关闭广告").findOne().click()
+                                sleep(1000)
+                                toastLog("第一个广告观看完毕");
+                                b = 10;
+                                break;
                             }
+                            sleep(5000);
+                            toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                            b++;
                         }
-                        back()
+                        toastLog("关闭广告");
+
+                        sleep(2000)
+
+                        if (className("android.view.View").text("已领取").exists()) {
+                            sleep(2000)
+                            aaa = 0;
+                            back();
+                        } else {
+                            if (className("android.view.View").text("去领取").exists()) {
+                                toastLog("正在准备观看第二个广告");
+                                className("android.view.View").text("去领取").findOne().click()
+                                var b = 0;
+                                while (b < 9) {
+                                    if (className("android.widget.TextView").text("关闭广告").exists()) {
+                                        className("android.widget.TextView").text("关闭广告").findOne().click()
+                                        sleep(1000)
+                                        toastLog("第二个广告观看完毕");
+                                        b = 10;
+                                        break;
+                                    }
+                                    sleep(5000);
+                                    toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                                    b++;
+                                }
+                            }
+                            aaa = 0;
+                            back();
+                        }
+                    } else {
+                        back();
+                        aaa = 0;
                     }
-                } else {
-                    back();
-                    aaa = 0;
+
                 }
-                back();
                 aaa = 0;
+                sleep(1000)
             }
-            aaa = 0;
-            sleep(1000)
+        } else {
+            log("不会自动领取宝箱")
         }
     });
     var thread3 = threads.start(function () {
@@ -202,17 +210,22 @@ ui.gb.on("click", () => {
     console.hide()
     engines.stopAll();
 });
-/* 
 
-var list =className("android.widget.TabHost").findOne()
-var a = bx()
-click(a.bounds().centerX(), a.bounds().centerY())
-function bx(){
-    for(var i = 0; i < list.childCount(); i++){
+
+function bx() {
+    var list = className("android.widget.TabHost").findOne()
+    for (var i = 0; i < list.childCount(); i++) {
         var child = list.child(i);
-        log();
-        if(child.className()=="android.widget.ImageView"){
+        if (child.className() == "android.widget.ImageView") {
             return list.child(i);
         }
     }
-} */
+}
+
+ui.auto_box.on("check", (checked) => {
+    if (checked) {
+        auto_box_checked = true;
+    } else {
+        auto_box_checked = false;
+    }
+});
