@@ -91,7 +91,8 @@ ui.ok.on("click", () => {
                 }
                 aaa = 1;
                 toastLog("正在点击开宝箱按钮");
-                id("bs8").findOne().click();
+                var bx = className("android.widget.TextView").textStartsWith("金币").findOne()
+                click(bx.bounds().centerX(), bx.bounds().centerY())
                 text("开宝箱得金币").findOne().click();
                 toastLog("已点击开宝箱得金币按钮");
                 sleep(3000);
@@ -99,7 +100,8 @@ ui.ok.on("click", () => {
                     toastLog("看广告视频按钮存在");
                     sleep(1000)
                     toastLog("正在点击看广告视频按钮");
-                    className("android.widget.TextView").text("看广告视频再赚").findOne().parent().click()
+                    var gg1 = className("android.widget.TextView").text("看广告视频再赚").findOne()
+                    click(gg1.bounds().centerX(), gg1.bounds().centerY())
                     var b = 0;
                     while (b < 9) {
                         if (className("android.widget.TextView").text("关闭广告").exists()) {
@@ -116,28 +118,33 @@ ui.ok.on("click", () => {
                     }
                     toastLog("关闭广告");
                     sleep(2000)
-                    id("bs8").findOne().click();
+                    var bx = className("android.widget.TextView").textStartsWith("金币").findOne()
+                    click(bx.bounds().centerX(), bx.bounds().centerY())
                     sleep(2000)
-                    if (className("android.view.View").text("去领取").exists()) {
-                        toastLog("正在准备观看第二个广告");
-                        className("android.view.View").text("去领取").findOne().click()
-                        var b = 0;
-                        while (b < 9) {
-                            if (className("android.widget.TextView").text("关闭广告").exists()) {
-                                className("android.widget.TextView").text("关闭广告").findOne().click()
-                                sleep(1000)
-                                aaa = 0;
-                                back();
-                                toastLog("第二个广告观看完毕");
-                                b = 10;
-                                break;
-                            }
-                            sleep(5000);
-                            toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
-                            b++;
-                        }
-                    } else {
+                    if (className("android.view.View").text("已领取").exists()) {
+                        sleep(2000)
                         back();
+                    } else {
+                        if (className("android.view.View").text("去领取").exists()) {
+                            toastLog("正在准备观看第二个广告");
+                            className("android.view.View").text("去领取").findOne().click()
+                            var b = 0;
+                            while (b < 9) {
+                                if (className("android.widget.TextView").text("关闭广告").exists()) {
+                                    className("android.widget.TextView").text("关闭广告").findOne().click()
+                                    sleep(1000)
+                                    aaa = 0;
+                                    back();
+                                    toastLog("第二个广告观看完毕");
+                                    b = 10;
+                                    break;
+                                }
+                                sleep(5000);
+                                toastLog("正在等待关闭广告按钮" + b * 5 + "秒");
+                                b++;
+                            }
+                        }
+                        back()
                     }
                 } else {
                     back();
