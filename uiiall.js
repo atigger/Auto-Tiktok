@@ -14,21 +14,23 @@ var zddy = getVerName(app.getPackageName("自动抖音"))
 var dyjsb = getVerName1(app.getPackageName("抖音极速版"))
 var auto_box_checked = false;
 ui.layout(
-    <vertical>
-        <button id="wzh" text="点击打开无障碍服务" />
-        <button id="sz" text="点击打开设置" />
-        <text text="请设置您需要自动操作的时间" marginTop="30" />
-        <input id="time1" inputType="number" hint="单位（分钟）" line="1" text="" />
-        <checkbox id="auto_box" text="自动领取宝箱" />
-        <button id="ok" text="确定" />
-        <button id="gbgg" text="自动关闭广告功能" marginTop="30" />
-        <text text="此功能会无限循环自动点击关闭广告按钮，方便看广告的时候无需再手动点击关闭广告，需要停止时请点击音量+键即可关闭" textColor="black" />
-        <button id="gb" text="点击关闭脚本" marginTop="30" />
-        <text text="重要" textColor="red" gravity="center" textSize="40sp" marginTop="30" />
-        <text id="myText" line="4" textColor="red" gravity="center" />
-        <text id="text1" textColor="black" gravity="center" textSize="20sp" />
-        <text id="text2" textColor="black" gravity="center" textSize="20sp" />
-    </vertical>
+    <ScrollView>
+        <vertical>
+            <button id="wzh" text="点击打开无障碍服务" />
+            <button id="sz" text="点击打开设置" />
+            <text text="请设置您需要自动操作的时间" marginTop="30" />
+            <input id="time1" inputType="number" hint="单位（分钟）" line="1" text="" />
+            <checkbox id="auto_box" text="自动领取宝箱" />
+            <button id="ok" text="确定" />
+            <button id="gbgg" text="自动关闭广告功能" marginTop="30" />
+            <text text="此功能会无限循环自动点击关闭广告按钮，方便看广告的时候无需再手动点击关闭广告，需要停止时请点击音量+键即可关闭" textColor="black" />
+            <button id="gb" text="点击关闭脚本" marginTop="30" />
+            <text text="重要" textColor="red" gravity="center" textSize="40sp" marginTop="30" />
+            <text id="myText" line="4" textColor="red" gravity="center" />
+            <text id="text1" textColor="black" gravity="center" textSize="20sp" />
+            <text id="text2" textColor="black" gravity="center" textSize="20sp" />
+        </vertical>
+    </ScrollView>
 );
 function getVerName(package_name) {
     let pkgs = context.getPackageManager().getInstalledPackages(0).toArray();
@@ -95,8 +97,9 @@ ui.ok.on("click", () => {
                     aaa = 1;
                     toastLog("正在点击开宝箱按钮");
 
-                    var bx1 = bx()
-                    click(bx1.bounds().centerX(), bx1.bounds().centerY())
+                    id("bsc").findOne().click()
+
+                    sleep(3000)
 
                     var kbxdjb = text("开宝箱得金币").findOne();
                     click(kbxdjb.bounds().centerX(), kbxdjb.bounds().centerY())
@@ -212,15 +215,6 @@ ui.gb.on("click", () => {
 });
 
 
-function bx() {
-    var list = className("android.widget.TabHost").findOne()
-    for (var i = 0; i < list.childCount(); i++) {
-        var child = list.child(i);
-        if (child.className() == "android.widget.ImageView") {
-            return list.child(i);
-        }
-    }
-}
 
 ui.auto_box.on("check", (checked) => {
     if (checked) {
